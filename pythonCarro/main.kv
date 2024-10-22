@@ -1,0 +1,54 @@
+#:include kv/homepage.kv
+#:include kv/loginpage.kv
+#:include kv/configpage.kv
+#:import utils kivy.utils
+#:include kv/cadastrarabastecimentopage.kv
+#:include kv/cadastrarveiculopage.kv
+#:include kv/mudarfotopage.kv
+#:include kv/relatorioabastecimento.kv
+
+FloatLayout:
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex("#394759")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    Image:
+        pos_hint:{"right":1, "top":0.95}
+        size_hint:1, 0.2
+        source: "icones/sd_logo.png"
+        id: foto_usuario
+
+    ScreenManager:
+        pos_hint:{"right":1, "top":0.7}
+        size_hint:1, 0.7
+        id:screen_manager
+
+        LoginPage:
+            name:"loginpage"
+            id:loginpage
+
+        HomePage:
+            name:"homepage"
+            id:homepage
+
+        ConfigPage:
+            name:"configpage"
+            id:configpage
+
+        CadastrarAbastecimentoPage:
+            name:"cadastrarabastecimentopage"
+            id:cadastrarabastecimentopage
+
+        CadastrarVeiculoPage:
+            name:"cadastrarveiculopage"
+            id:cadastrarveiculopage
+
+        RelatorioAbastecimento:
+            name:"relatorioabastecimento"
+            id:relatorioabastecimento
+
+        MudarFotoPage:
+            name:"mudarfotopage"
+            id:mudarfotopage

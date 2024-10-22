@@ -1,0 +1,83 @@
+<CadastrarVeiculoPage>
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source:"icones/Fundo_Aries.png"
+        Label:
+            pos_hint:{"right":0.85, "top":1.05}
+            size_hint: 0.7, 0.2
+            bold: True
+            text:"Cadastrar seu Veiculo"
+        #########################################################################################
+        AutocompleteTextInput:
+            id: id_marca
+            tipo: "marca"  # Define este campo como "marca"
+            size_hint: 0.6, 0.08
+            pos_hint: {"right": 0.8, "top": 0.9}
+            multiline: False
+            hint_text: 'Selecione uma marca'
+
+        AutocompleteTextInput:
+            id: id_modelo
+            tipo: "modelo"  # Define este campo como "modelo"
+            size_hint: 0.6, 0.08
+            pos_hint: {"right": 0.8, "top": 0.8}
+            multiline: False
+            hint_text: 'Selecione o modelo'
+
+        AutocompleteTextInput:
+            id: id_versao
+            tipo: "versao"  # Define este campo como "versao"
+            size_hint: 0.6, 0.08
+            pos_hint: {"right": 0.8, "top": 0.7}
+            multiline: False
+            hint_text: 'Selecione qual versao'
+        TextInput:
+            id: id_motor
+            hint_text: "motor"
+            pos_hint: {"right":0.8, "top":0.6}
+            size_hint: 0.6, 0.08
+        TextInput:
+            id: id_placa
+            hint_text: "placa"
+            pos_hint: {"right":0.8, "top":0.5}
+            size_hint: 0.6, 0.08
+        TextInput:
+            id: id_km_total
+            hint_text: "km do veiculo"
+            pos_hint: {"right":0.8, "top":0.4}
+            size_hint: 0.6, 0.08
+        TextInput:
+            id: id_condutor
+            hint_text: "condutor"
+            pos_hint: {"right":0.8, "top":0.3}
+            size_hint: 0.6, 0.08
+        FloatLayout:
+            LabelButton:
+                canvas.before:
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                        source:"icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+                on_release: app.gravar_carro(id_marca,id_modelo,id_versao,id_motor,id_placa,id_km_total,id_condutor)
+                text: "Gravar"
+                pos_hint: {"right":0.75, "top":0.24}
+                size_hint: 0.5, 0.15
+        ###########################################################################################
+        FloatLayout:
+            pos_hint:{"right":1, "top":0.12}
+            size_hint:1, 0.12
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#006D7E")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                pos_hint:{"right":0.2, "top":0.9}
+                size_hint:0.2, 0.8
+                source: "icones/voltar.png"
+                text:"voltar"
+                on_release: app.mudar_tela("homepage")

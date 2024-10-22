@@ -1,0 +1,80 @@
+<CadastrarAbastecimentoPage>
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source:"icones/Fundo_Aries.png"
+        Label:
+            id: id_label
+            pos_hint:{"right":0.85, "top":1.05}
+            size_hint: 0.7, 0.2
+            bold: True
+            text:"Cadastrar Abastecimento"
+
+        Spinner:
+            id: id_placa
+            size_hint: 0.6, 0.08
+            pos_hint: {"right": 0.8, "top": 0.85}
+            text: 'Selecione uma placa'
+            values: []  # Lista de valores será preenchida via código Python
+
+        TextInput:
+            id: id_km_carro
+            tipo:"km_carro"
+            hint_text: "km carro"
+            pos_hint: {"right":0.8, "top":0.75}
+            size_hint: 0.6, 0.08
+            on_text: app.formatar_numero(self)
+        TextInput:
+            id: id_km_rodado
+            tipo:"km_rodado"
+            hint_text: "km rodado"
+            pos_hint: {"right":0.8, "top":0.65}
+            size_hint: 0.6, 0.08
+            on_text: app.formatar_numero(self)
+        TextInput:
+            id: id_total_custo
+            hint_text: "valor total"
+            pos_hint: {"right":0.8, "top":0.55}
+            size_hint: 0.6, 0.08
+            on_text: app.formatar_custo(self)
+        TextInput:
+            id: id_litros
+            hint_text: "litros"
+            pos_hint: {"right":0.8, "top":0.45}
+            size_hint: 0.6, 0.08
+            on_text: app.formatar_numero(self)
+        Spinner:
+            id: id_tipo_comb
+            size_hint: 0.6, 0.08
+            pos_hint: {"right": 0.8, "top": 0.35}
+            text: 'Selecione o combustivel'
+            values: ['Gasolina','Etanol','Diesel','Bateria']
+
+        FloatLayout:
+            LabelButton:
+                canvas.before:
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                        source:"icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+                on_release: app.calcula_consumo(id_placa,id_km_carro,id_km_rodado, id_total_custo, id_litros, id_tipo_comb)
+                text: "Calcular"
+                pos_hint: {"right":0.8, "top":0.28}
+                size_hint: 0.6, 0.2
+        FloatLayout:
+            pos_hint:{"right":1, "top":0.12}
+            size_hint: 1, 0.12
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#006D7E")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                pos_hint:{"right":0.2, "top":0.9}
+                size_hint:0.2, 0.8
+                source: "icones/voltar.png"
+                text:"voltar"
+                on_release: app.mudar_tela("homepage")
